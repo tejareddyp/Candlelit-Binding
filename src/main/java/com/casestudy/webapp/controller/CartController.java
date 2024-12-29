@@ -1,4 +1,4 @@
 package com.casestudy.webapp.controller;
 
-public class AboutController {
+public class CartController {
 }
