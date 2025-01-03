@@ -1,11 +1,9 @@
-package com.example.module309.validation;
+package com.casestudy.webapp.validation;
 
-import com.example.module309.database.entity.User;
-import com.example.module309.security.AuthenticatedUserService;
+import com.casestudy.webapp.database.entity.User;
+import com.casestudy.webapp.security.AuthenticatedUserService;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-//import org.apache.commons.lang3.StringUtils;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

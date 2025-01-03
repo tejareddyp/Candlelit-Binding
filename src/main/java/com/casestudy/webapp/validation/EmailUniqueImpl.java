@@ -1,7 +1,7 @@
-package com.example.module309.validation;
+package com.casestudy.webapp.validation;
 
-import com.example.module309.database.dao.UserDAO;
-import com.example.module309.database.entity.User;
+import com.casestudy.webapp.database.dao.UserDAO;
+import com.casestudy.webapp.database.entity.User;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.slf4j.Logger;

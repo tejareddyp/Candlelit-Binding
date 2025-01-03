@@ -6,12 +6,12 @@ import jakarta.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = EmailUniqueImpl.class)
+@Constraint(validatedBy = UsernameUniqueImpl.class)
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface EmailUnique {
+public @interface UsernameUnique {
 
-    String message() default "{UserEmailUnique}";
+    String message() default "{UserUsernameUnique}";
 
     Class<?>[] groups() default {};
 

@@ -5,13 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ProfileController {
+public class AccountController {
 
-    @GetMapping("/profile")
-    public ModelAndView profile() {
+    @GetMapping("/account")
+    public ModelAndView account() {
         ModelAndView response = new ModelAndView();
 
-        response.setViewName("profile");
+        response.setViewName("account");
 
         return response;
     }

@@ -9,14 +9,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
-public class EmailUniqueImpl implements ConstraintValidator<EmailUnique, String> {
-    public static final Logger LOG = LoggerFactory.getLogger(EmailUniqueImpl.class);
+public class UsernameUniqueImpl implements ConstraintValidator<UsernameUnique, String> {
+    public static final Logger LOG = LoggerFactory.getLogger(UsernameUniqueImpl.class);
 
     @Autowired
     private UserDAO userService;
 
     @Override
-    public void initialize(EmailUnique constraintAnnotation) {
+    public void initialize(UsernameUnique constraintAnnotation) {
 
     }
 
@@ -28,7 +28,7 @@ public class EmailUniqueImpl implements ConstraintValidator<EmailUnique, String>
             return true;
         }
 
-        User user = userService.findByEmailIgnoreCase(value);
+        User user = userService.findByUsernameIgnoreCase(value);
 
         return (user == null);
     }

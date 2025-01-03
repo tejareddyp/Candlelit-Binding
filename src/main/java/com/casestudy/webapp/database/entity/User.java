@@ -5,17 +5,23 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
 @ToString
 @Table( name = "users")
-public class Users {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<Orders> orders;
 
     @Column( name = "first_name")
     private String firstName;
@@ -23,30 +29,14 @@ public class Users {
     @Column( name = "last_name")
     private String lastName;
 
-    @Column( name = "email")
+    @Column( name = "email", unique = true, nullable = false)
     private String email;
 
-    @Column( name = "password")
+    @Column( name = "password", nullable = false)
     private String password;
 
-    @Column( name = "address_line1")
-    private String addressLine1;
+    @Column( name = "username",nullable = false,unique = true)
+    private String username;
 
-    @Column( name = "address_line2")
-    private String addressLine2;
 
-    @Column( name = "city")
-    private String city;
-
-    @Column( name = "state")
-    private String state;
-
-    @Column( name = "zip")
-    private Integer zip;
-
-    @Column( name = "phone")
-    private String phone;
-
-    @Column( name = "username")
-    private String userName;
 }

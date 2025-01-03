@@ -1,10 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -30,7 +30,7 @@
         }
 
         div.gallery:hover {
-            border: 1px solid blueviolet;
+            border: 1px solid black;
         }
 
         div.gallery img {
@@ -80,118 +80,114 @@
             display: table;
             clear: both;
         }
+
+        .addToCart {
+            background-color: #672a3f;
+            color: #fcf4d9;
+            width: 50%;
+            margin-right: 3rem;
+            margin-left: 3.5rem;
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            font-size: small;
+        }
+
+
+        #backToTop {
+            position: fixed;
+            bottom: .5rem;
+            right: .5rem;
+            background-color: #672a3f;
+            color: #fcf4d9;
+            border: none;
+            padding: 10px;
+            border-radius: 40%;
+            font-size: 18px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #backToTop:hover {
+            background-color: #672a3f;
+        }
     </style>
+
 </head>
 
 <body style="background-color: #fcf4d9;">
 
+<jsp:include page="include/header.jsp"/>
+
 <div id="main-div" style="font-family: Oldenburg, serif;color: #672a3f;">
-    <div id="navbar"></div>
 
-    <div class="responsive">
-        <div class="gallery">
-            <a target="_blank" href="img_5terre.jpg">
-                <img src=".././p" alt="Cinque Terre">
-            </a>
-            <div class="desc">Add a description of the image here</div>
+    <c:forEach var="product" items="${productsList}">
+        <div class="responsive">
+            <div class="gallery">
+                <img src="../../pub/images/${product.name}.jpg" alt="image of ${product.name}">
+                <div class="desc">
+                    <h5><c:out
+                            value="${product.name}"/></h5>
+                    <h6>$<c:out value="${product.price}"/></h6>
+                </div>
+                <input class="addToCart" type="button" value="Add to Cart" onclick=addToCart("${product.id}") />
+            </div>
         </div>
-    </div>
-
-    <div class="responsive">
-        <div class="gallery">
-            <a target="_blank" href="img_forest.jpg">
-                <img src="binder-images/green-pattern.jpg" alt="Forest">
-            </a>
-            <div class="desc">Add a description of the image here</div>
-        </div>
-    </div>
-
-
-    <div class="responsive">
-        <div class="gallery">
-            <a target="_blank" href="img_mountains.jpg">
-                <img src="binder-images/Rabbit.jpg" alt="Mountains">
-            </a>
-            <div class="desc">Add a description of the image here</div>
-        </div>
-    </div>
-
-    <div class="responsive">
-        <div class="gallery">
-            <a target="_blank" href="img_forest.jpg">
-                <img src="binder-images/green-pattern.jpg" alt="Forest">
-            </a>
-            <div class="desc">Add a description of the image here</div>
-        </div>
-    </div>
-
-    <div class="responsive">
-        <div class="gallery">
-            <a target="_blank" href="img_forest.jpg">
-                <img src="binder-images/green-pattern.jpg" alt="Forest">
-            </a>
-            <div class="desc">Add a description of the image here</div>
-        </div>
-    </div>
-
-    <div class="responsive">
-        <div class="gallery">
-            <a target="_blank" href="img_forest.jpg">
-                <img src="binder-images/green-pattern.jpg" alt="Forest">
-            </a>
-            <div class="desc">Add a description of the image here</div>
-        </div>
-    </div>
-
-    <div class="responsive">
-        <div class="gallery">
-            <a target="_blank" href="img_forest.jpg">
-                <img src="binder-images/green-pattern.jpg" alt="Forest">
-            </a>
-            <div class="desc">Add a description of the image here</div>
-        </div>
-    </div>
-
-    <div class="responsive">
-        <div class="gallery">
-            <a target="_blank" href="img_forest.jpg">
-                <img src="binder-images/green-pattern.jpg" alt="Forest">
-            </a>
-            <div class="desc">Add a description of the image here</div>
-        </div>
-    </div>
-
-    <div class="responsive">
-        <div class="gallery">
-            <a target="_blank" href="img_forest.jpg">
-                <img src="binder-images/green-pattern.jpg" alt="Forest">
-            </a>
-            <div class="desc">Add a description of the image here</div>
-        </div>
-    </div>
-
-    <div class="responsive">
-        <div class="gallery">
-            <a target="_blank" href="img_forest.jpg">
-                <img src="binder-images/green-pattern.jpg" alt="Forest">
-            </a>
-            <div class="desc">Add a description of the image here</div>
-        </div>
-    </div>
-
-    <div class="responsive">
-        <div class="gallery">
-            <a target="_blank" href="img_forest.jpg">
-                <img src="binder-images/green-pattern.jpg" alt="Forest">
-            </a>
-            <div class="desc">Add a description of the image here</div>
-        </div>
-    </div>
-
-    <div class="clearfix"></div>
-
+    </c:forEach>
 
 </div>
+
+<!-- Back to Top Button -->
+<button id="backToTop" title="Go to top">&#8593;</button>
+
+<script>
+
+    // When the user clicks on the button, scroll to the top of the document
+    let mybutton = document.getElementById("backToTop");
+
+
+    window.onscroll = function () {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    };
+
+    mybutton.onclick = function () {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    };
+
+
+    let addToCart = (productId) => {
+        let currentCart = localStorage.getItem('itemsInCart');
+
+        if (currentCart == null) {
+            currentCart = new Map();
+        } else {
+            currentCart = new Map(JSON.parse(currentCart));
+        }
+
+        if (currentCart.has(productId)) {
+            let temp = currentCart.get(productId) + 1;
+            if (temp <= 5) {
+                currentCart.set(productId, temp);
+                alert("Item added to cart!")
+            } else {
+                alert("Max quantity per item is 5!")
+            }
+        }
+        else {
+            currentCart.set(productId, 1);
+            alert("Item added to cart!")
+        }
+
+        localStorage.setItem('itemsInCart', JSON.stringify(Array.from(currentCart.entries())));
+    };
+
+</script>
+
+<jsp:include page="include/footer.jsp"/>
 
 </body>
 </html>

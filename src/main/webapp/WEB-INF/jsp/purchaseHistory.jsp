@@ -1,16 +1,19 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: teja
-  Date: 1/2/2025
-  Time: 1:16 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+    <title></title>
+</head>
+<body>
+
+<jsp:include page="include/header.jsp"/>
+<section>
+    <div>
+        <h4>Purchase History</h4>
+    </div>
+</section>
+
+<jsp:include page="include/footer.jsp"/>
+</body>
 </html>

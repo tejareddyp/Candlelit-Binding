@@ -1,4 +1,4 @@
-package com.example.module309.validation;
+package com.casestudy.webapp.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = CurrentPasswordValidImpl.class)
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public class CurrentPasswordValid implements Annotation {
+public @interface CurrentPasswordValid  {
 
     String message() default "{CurrentPasswordValid}";
 
