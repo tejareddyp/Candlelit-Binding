@@ -70,7 +70,8 @@
         } else {
             currentCart = (JSON.parse(currentCart));
         }
-
+        <%--let productsList = JSON.parse(${productsList})--%>
+        // console.log(productsList)
         let cart = findProductNames(${productsList}, currentCart);
 
         let totalPrice = 0;
@@ -109,27 +110,8 @@
 
     };
 
-    let findProductNames = (products, currentCart) => {
-        let output = [];
-        currentCart.forEach((cartItem) => {
-            let prodName = "Product not found";
-            let price = "Price not found";
-            for (let i = 0; i < products.length; i++) {
-                if (products[i].id == cartItem[0]) {
-                    prodName = products[i].name;
-                    price = products[i].price;
-                    break;
-                }
-            }
-            output.push({"id": cartItem[0], "name": prodName, "quantity": cartItem[1], "price": price, "selected": ["", "", "", "", "", "", ""]});
-            output[output.length - 1].selected[output[output.length - 1].quantity] = "selected"
-        });
-
-        return output;
-    };
-
     window.onload = () => {loadCart();}
 </script>
-<script src="../../pub/js/updateQuantity.js"></script>
+<script src="../../pub/js/utils.js"></script>
 </body>
 </html>

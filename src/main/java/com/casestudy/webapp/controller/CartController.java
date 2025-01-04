@@ -3,6 +3,7 @@ package com.casestudy.webapp.controller;
 import com.casestudy.webapp.database.dao.ProductsDAO;
 import com.casestudy.webapp.database.entity.Products;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +23,10 @@ public class CartController {
         ModelAndView response = new ModelAndView();
 
         List<Products> productsList = productsDAO.findAllProducts();
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+        String productsJson = gson.toJson(productsList);
 
-        Gson gson = new Gson();
-        String jsonProductsList = gson.toJson(productsList);
-        response.addObject("productsList", jsonProductsList);
+        response.addObject("productsList", productsJson);
 
         response.setViewName("cart");
         return response;

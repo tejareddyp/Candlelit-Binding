@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface ProductsDAO extends JpaRepository<Products, Long> {
 
-     @Query(value = "select * from products order by stock desc", nativeQuery = true)
+     @Query(value = "select id, name, price, stock from products order by stock desc", nativeQuery = true)
      List<Products> findAllProducts();
+
+     Products findProductsById(Integer id);
 }
