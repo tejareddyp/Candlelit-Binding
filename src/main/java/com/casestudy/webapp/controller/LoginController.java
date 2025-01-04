@@ -2,6 +2,7 @@ package com.casestudy.webapp.controller;
 
 import com.casestudy.webapp.database.dao.UserDAO;
 import com.casestudy.webapp.database.entity.User;
+import com.casestudy.webapp.form.ForgotPasswordFormBean;
 import com.casestudy.webapp.form.SignUpFormBean;
 import com.casestudy.webapp.security.AuthenticatedUserService;
 import jakarta.servlet.http.HttpSession;
@@ -91,6 +92,45 @@ public class LoginController {
         return response;
 
     }
+
+    @GetMapping("/login/forgotPassword")
+    public ModelAndView forgotPassword() {
+        ModelAndView response = new ModelAndView();
+
+        response.setViewName("login/forgot");
+
+        return response;
+    }
+
+
+    @PostMapping("/login/forgotPassword")
+    public ModelAndView submitNewPassword(@Valid ForgotPasswordFormBean form, BindingResult bindingResult, HttpSession session) {
+        ModelAndView response = new ModelAndView();
+
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getAllErrors());
+            response.setViewName("login/forgot");
+            response.addObject("bindingResult", bindingResult);
+            response.addObject("form", form);
+        }else {
+            User user = userDAO.findByUsernameIgnoreCase(form.getUsername());
+
+            if (user != null && user.getEmail().equals(form.getEmail()) && user.getFirstName().equals(form.getFirstname()) && user.getLastName().equals(form.getLastname())) {
+                user.setPassword(passwordEncoder.encode(form.getPassword()));
+                userDAO.save(user);
+                authenticatedUserService.changeLoggedInUsername(session, form.getUsername(),form.getPassword());
+                response.setViewName("redirect:/");
+            } else {
+                System.out.println("wrong user details");
+                response.addObject("error", "Invalid user details!");
+                response.setViewName("login/forgot");
+            }
+
+        }
+
+        return response;
+    }
+
 
 
 }

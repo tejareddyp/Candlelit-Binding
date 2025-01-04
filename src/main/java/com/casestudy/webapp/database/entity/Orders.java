@@ -1,5 +1,6 @@
 package com.casestudy.webapp.database.entity;
 
+import com.google.gson.annotations.Expose;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column( name = "id")
+    @Expose
     private Integer id;
 
     @ManyToMany
@@ -41,22 +43,26 @@ public class Orders {
 
 
     @Column( name = "customer_id")
+    @Expose
     private Integer customerId;
 
     @Column( name = "order_date", columnDefinition = "DATE")
+    @Expose
     private Date orderDate;
 
     @Column( name = "total_price", columnDefinition = "DECIMAL")
+    @Expose
     private double totalPrice;
 
     @Column( name = "address")
+    @Expose
     private String address;
 
     @Column( name = "name")
+    @Expose
     private String name;
 
     @Column( name = "notes")
+    @Expose
     private String notes;
-
-
 }

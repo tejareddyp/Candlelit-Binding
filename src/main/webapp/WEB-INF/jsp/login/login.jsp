@@ -54,7 +54,7 @@
                 <input type="password" class="form-control" id="password" name="password" placeholder="" required>
             </div>
             <div class="mb-3 ">
-                <button type="submit" id="forgotPassword" class="btn btn-primary">Forgot
+                <button type="submit" id="forgotPassword" class="btn btn-primary" onclick="location.href='forgotPassword'">Forgot
                     Password</button>
             </div>
             <div class="mb-3 ">

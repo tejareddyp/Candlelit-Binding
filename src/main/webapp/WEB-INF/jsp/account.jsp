@@ -20,6 +20,8 @@
             border-radius: 10px;
             border-width: 1px;
             display: flex;
+            justify-content: center;
+            flex-direction: column;
         }
 
         img {
@@ -40,11 +42,15 @@
     </div>
 
     <div id="order1" class="container col-sm-6 col-lg-4 mt-4">
-        <img src="../../pub/images/fall%20leaves%20book%20small.jpg"/>
         <div>
             <h5>Order Date:</h5>
             <h5>Amount:</h5>
         </div>
+        <div>
+            <img src="../../pub/images/fall%20leaves%20book%20small.jpg"/>
+            <h6>Image name</h6>
+        </div>
+
     </div>
 
     <div id="order2" class="container col-sm-6 col-lg-4 mt-4">
