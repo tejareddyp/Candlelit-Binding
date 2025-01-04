@@ -4,8 +4,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
-
     <style>
         h4 {
             font-family: Oldenburg;
@@ -40,27 +38,33 @@
     <div class="container col-sm-6 col-lg-4 mt-3">
         <h4>Your Orders</h4>
     </div>
-
-    <div id="order1" class="container col-sm-6 col-lg-4 mt-4">
-        <div>
-            <h5>Order Date:</h5>
-            <h5>Amount:</h5>
-        </div>
-        <div>
-            <img src="../../pub/images/fall%20leaves%20book%20small.jpg"/>
-            <h6>Image name</h6>
-        </div>
-
-    </div>
-
-    <div id="order2" class="container col-sm-6 col-lg-4 mt-4">
-        <div>
-            <h5>Order Date:</h5>
-            <h5>Amount:</h5>
-        </div>
+    <div id="order-container">
+        Failed to load data
     </div>
 </section>
 
 <jsp:include page="include/footer.jsp"/>
+<script>
+    let loadOrders = () => {
+        let orderDetails = JSON.parse(`${orderDetailsJson}`);
+        console.log(orderDetails)
+
+        document.getElementById('order-container').innerHTML = orderDetails.map(od =>
+        `<div id="order1" class="container col-sm-6 col-lg-4 mt-4">
+        <div>
+            <h5>Order Date: ` + od[1].slice(0,10) + `</h5>
+            <h5>Amount: $` + od[3] + ` x ` + od[2] + ` = $` + (od[2] * od[3]) + `</h5>
+        </div>
+        <div>
+            <img src="../../pub/images/` + od[0] + `.jpg"/>
+            <h6>` + od[0] + `</h6>
+        </div>
+    </div>`
+        )
+
+    }
+
+    window.onload = () => loadOrders();
+</script>
 </body>
 </html>

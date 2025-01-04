@@ -70,8 +70,8 @@
     let totalPrice = 0;
 
     const date = new Date();
-    let subject = "${username}" + " - Placing Order, " + date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-"
-            + date.getUTCDate();
+    let subject = "${username}" + " - Placing Order, " + date.getFullYear() + "-" + (date.getMonth() + 1) + "-"
+            + date.getDate();
 
     let body = "Shipping to:%0D%0A${name}%0D%0A${address}%0D%0A%0D%0AOrder Details:%0D%0A";
     cart.forEach(item => {
