@@ -27,6 +27,7 @@
 
         div.gallery {
             border: 1px solid #672a3f;
+            padding: 1rem;
         }
 
         div.gallery:hover {
@@ -36,13 +37,12 @@
         div.gallery img {
             width: 100%;
             padding: 1rem;
-
-
         }
 
         div.desc {
             padding: 15px;
             text-align: center;
+            height: 25%;
         }
 
         * {
@@ -52,12 +52,9 @@
         .responsive {
             padding: 6px 6px;
             float: left;
-            width: 20%;
+            width: 22%;
             border-color: #672a3f;
-            /* background-color:rgb(221, 221, 178); */
-            margin: 1rem;
-
-
+            margin: 1.1rem;
         }
 
         @media only screen and (max-width: 700px) {
@@ -69,7 +66,7 @@
 
         @media only screen and (max-width: 500px) {
             .responsive {
-                width: 80%;
+                width: 100%;
                 margin: 1rem;
                 margin-top: 5rem;
             }
@@ -110,6 +107,20 @@
         #backToTop:hover {
             background-color: #672a3f;
         }
+
+        #main-div {
+            font-family: "Oldenburg", serif;
+            color: #672a3f;
+        }
+
+        #header {
+            font-family: "Oldenburg", serif;
+            color: #672a3f;
+            display: flex;
+            justify-content: center;
+            padding-top: 1rem;
+        }
+
     </style>
 
 </head>
@@ -118,23 +129,31 @@
 
 <jsp:include page="include/header.jsp"/>
 
-<div id="main-div" style="font-family: Oldenburg, serif;color: #672a3f;">
+<section>
 
-    <c:forEach var="product" items="${productsList}">
-        <div class="responsive">
-            <div class="gallery">
-                <img src="../../pub/images/${product.name}.jpg" alt="image of ${product.name}">
-                <div class="desc">
-                    <h5><c:out
-                            value="${product.name}"/></h5>
-                    <h6>$<c:out value="${product.price}"/></h6>
+    <div id="header">
+        <h2>Shop</h2>
+    </div>
+
+    <div id="main-div">
+        <c:forEach var="product" items="${productsList}">
+            <div class="responsive">
+                <div class="gallery">
+                    <img src="../../pub/images/${product.name}.jpg" alt="image of ${product.name}">
+                    <div class="desc">
+                        <h5><c:out
+                                value="${product.name}"/></h5>
+                        <h6>$<c:out value="${product.price}"/></h6>
+                        <h6>Stock: <c:out value="${product.stock}"/></h6>
+                    </div>
+                    <input class="addToCart" type="button" value="Add to Cart" onclick=addToCart("${product.id}")/>
                 </div>
-                <input class="addToCart" type="button" value="Add to Cart" onclick=addToCart("${product.id}") />
             </div>
-        </div>
-    </c:forEach>
+        </c:forEach>
 
-</div>
+    </div>
+
+</section>
 
 <!-- Back to Top Button -->
 <button id="backToTop" title="Go to top">&#8593;</button>
@@ -162,11 +181,13 @@
     let addToCart = (productId) => {
         let currentCart = localStorage.getItem('itemsInCart');
 
+
         if (currentCart == null) {
             currentCart = new Map();
         } else {
             currentCart = new Map(JSON.parse(currentCart));
         }
+
 
         if (currentCart.has(productId)) {
             let temp = currentCart.get(productId) + 1;
@@ -176,11 +197,11 @@
             } else {
                 alert("Max quantity per item is 5!")
             }
-        }
-        else {
+        } else {
             currentCart.set(productId, 1);
             alert("Item added to cart!")
         }
+
 
         localStorage.setItem('itemsInCart', JSON.stringify(Array.from(currentCart.entries())));
     };

@@ -49,7 +49,7 @@ public class SecurityConfig {
                 // extra security and delete these cookies when logging out
                 .deleteCookies("username", "JSESSIONID"));
 
-        // only if the user goes to a page that they do not have authoziation for then it goes to this page
+        // only if the user goes to a page that they do not have authorization for then it goes to this page
         // instead of showing a whitelabel error page
         http.exceptionHandling(exception -> exception
                 .accessDeniedPage("/404"));

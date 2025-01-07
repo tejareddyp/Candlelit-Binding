@@ -26,14 +26,17 @@ let findProductNames = (products, currentCart) => {
     currentCart.forEach((cartItem) => {
         let prodName = "Product not found";
         let price = "Price not found";
+        let stock = "Stock not found";
         for (let i = 0; i < products.length; i++) {
             if (products[i].id == cartItem[0]) {
                 prodName = products[i].name;
                 price = products[i].price;
+                stock = products[i].stock;
                 break;
             }
         }
-        output.push({"id": cartItem[0], "name": prodName, "quantity": cartItem[1], "price": price, "selected": ["", "", "", "", "", "", ""]});
+        output.push({"id": cartItem[0], "name": prodName, "quantity": cartItem[1], "price": price, "stock": stock,
+            "selected": ["", "", "", "", "", "", ""]});
         output[output.length - 1].selected[output[output.length - 1].quantity] = "selected"
     });
 

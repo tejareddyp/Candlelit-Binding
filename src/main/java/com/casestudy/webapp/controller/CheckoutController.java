@@ -19,6 +19,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.Math.min;
+
 @Controller
 public class CheckoutController {
 
@@ -68,6 +70,9 @@ public class CheckoutController {
             totalPrice += product.getPrice() * detail.getQuantity();
 
             order.getOrderDetails().add(detail);
+
+            product.setStock(min(0, product.getStock() - detail.getQuantity()));
+            productsDAO.save(product);
         }
 
         order.setUser(customer);

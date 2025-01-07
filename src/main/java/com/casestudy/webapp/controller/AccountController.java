@@ -10,6 +10,7 @@ import com.casestudy.webapp.database.entity.User;
 import com.casestudy.webapp.security.AuthenticatedUserService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,6 +32,7 @@ public class AccountController {
         this.productsDAO = productsDAO;
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/account")
     public ModelAndView account() {
         ModelAndView response = new ModelAndView();

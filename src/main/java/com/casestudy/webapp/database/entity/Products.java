@@ -37,7 +37,7 @@ public class Products {
 
     @Column( name = "stock")
     @Expose
-    private String stock;
+    private Integer stock;
 
     @Column( name = "price", columnDefinition = "DECIMAL")
     @Expose

@@ -64,7 +64,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         // loop over our user roles from the database
         for (UserRole role : userRoles) {
-            // create a new simple granted authority for each user role in the databse
+            // create a new simple granted authority for each user role in the database
             SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getRoleName());
             authorities.add(authority);
         }

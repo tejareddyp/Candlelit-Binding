@@ -34,9 +34,7 @@
 
         #welcome-user {
             color: #fcf4d9;
-            font-family: "Oldenburg", serif;
-            font-size: small;
-
+            font-family: "Metamorphous", serif;
         }
     </style>
 
@@ -55,15 +53,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
 
-
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item mt-2">
-                        <sec:authorize access="isAuthenticated()">
-                        <span class="navbar-text" id="welcome-user">
-                            Welcome, <strong><sec:authentication property="name"/></strong>
-                        </span>
-                        </sec:authorize>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/about">ABOUT</a>
                     </li>
@@ -75,11 +66,7 @@
                             <a class="nav-link" href="/login/login">LOGIN</a>
                         </li>
                     </sec:authorize>
-                    <sec:authorize access="isAuthenticated()">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login/logout">LOGOUT</a>
-                        </li>
-                    </sec:authorize>
+
                     <li class="nav-item">
                         <a class="nav-link" href="/contact">CONTACT</a>
                     </li>
@@ -90,19 +77,23 @@
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
                         <li class="nav-item">
+                            <a class="nav-link" href="/login/logout">LOGOUT</a>
+                        </li>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+                        <li class="nav-item">
                             <a class="nav-link" href="/account">ACCOUNT</a>
                         </li>
                     </sec:authorize>
-                    <%--                    <sec:authorize access="!isAuthenticated()">--%>
-                    <%--                        <li class="nav-item">--%>
-                    <%--                            <a class="nav-link" href="/login/login">Login</a>--%>
-                    <%--                        </li>--%>
-                    <%--                    </sec:authorize>--%>
-                    <%--                    <sec:authorize access="isAuthenticated()">--%>
-                    <%--                        <li class="nav-item">--%>
-                    <%--                            <a class="nav-link" href="/login/logout">Logout</a>--%>
-                    <%--                        </li>--%>
-                    <%--                    </sec:authorize>--%>
+                    <li class="nav-item mt-2">
+                        <sec:authorize access="isAuthenticated()">
+                        <span class="navbar-text" id="welcome-user">
+                             <strong><sec:authentication property="name"/></strong>
+<%--                            Hi, <strong><sec:authentication property="name"/></strong>--%>
+                        </span>
+                        </sec:authorize>
+                    </li>
+
                     <sec:authorize access="hasAnyAuthority('ADMIN')">
                         <li class="nav-item">
                             <a class="nav-link" href="/">Admin Only</a>

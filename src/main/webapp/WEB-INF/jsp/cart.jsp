@@ -18,9 +18,8 @@
             border-width: 1px;
             border-color: #672a3f;
             margin:2rem;
-            margin-right: 2rem;
             display: flex;
-            font-family: Oldenburg;
+            font-family: "Oldenburg", serif;
             font-size: large;
             color:#672a3f;
         }
@@ -70,8 +69,6 @@
         } else {
             currentCart = (JSON.parse(currentCart));
         }
-        <%--let productsList = JSON.parse(${productsList})--%>
-        // console.log(productsList)
         let cart = findProductNames(${productsList}, currentCart);
 
         let totalPrice = 0;
@@ -84,6 +81,7 @@
                     <div class="container mb-2 mt-2" style="display: flex;flex-direction: column;justify-content: center">
                         <h4 >` + cartItem.name + `</h4>
                         <h6>$` + cartItem.price + ` x ` + cartItem.quantity + ` = $` + cartItem.price * cartItem.quantity + ` </h6>
+                        <h6>Stock: ` + cartItem.stock + `</h6>
                         <select name="quanity-select" onchange=updateQuantity(` + cartItem.id + `) id="select-` + cartItem.id + `" >
                             <option ` + cartItem.selected[0] + ` >0</option>
                             <option ` + cartItem.selected[1] + ` >1</option>

@@ -6,7 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface OrdersDAO extends JpaRepository<Orders, Long> {
-    List<Orders> findByCustomerId(int customerId);
 
-    Orders findById(int orderId);
+    Orders findById(Integer Id);
+
+    Orders findByCustomerId(Integer CustomerId);
 }
