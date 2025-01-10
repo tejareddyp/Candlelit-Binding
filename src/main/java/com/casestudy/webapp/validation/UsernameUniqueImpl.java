@@ -22,8 +22,7 @@ public class UsernameUniqueImpl implements ConstraintValidator<UsernameUnique, S
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        // these 3 lines are the first 3 lines of every custom validator you build
-        // BECAUSE .. we are not checking if this value is empty
+
         if (StringUtils.isEmpty(value)) {
             return true;
         }

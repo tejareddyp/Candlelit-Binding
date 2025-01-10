@@ -19,44 +19,42 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
+        // Disables (CSRF) protection.
         http.csrf(csrf -> csrf.disable());
 
+        //Allow all incoming HTTP requests without authentication.
         http.authorizeHttpRequests((authorize) -> authorize
-                        // Require authentication for /customer/** endpoints
-//                .requestMatchers("/customer/**").authenticated()
-//                .requestMatchers("/employee/**").authenticated()
 
-                        // Allow all other requests without authentication
-                        .anyRequest().permitAll()
+                .anyRequest().permitAll()
         );
 
+        //Enable authentication
         http.formLogin(formLogin -> formLogin
-                // this is the URL for the login page ... this needs a controller method to listen and show the login page
-                // this is alnalagous to /customer and the page is login
+
                 .loginPage("/login/login")
-                // spring security has this controller method created for us already .. and we are just configuring the URL where it submits to
+
                 .loginProcessingUrl("/login/loginSubmit"));
 
-        // this section is for configuing logout
+
+        // Logout configuration
         http.logout(formLogout -> formLogout
-                // when the user logs out ... destroy the session the server side
+
                 .invalidateHttpSession(true)
-                // this is the acutal URL this is implemented by spring security and we are just specifying the get mapping for it
+
                 .logoutUrl("/login/logout")
-                // where does the user go after they have been logged out
-                // this is a URL that we have implemented somewhere in our project or controllers
+
                 .logoutSuccessUrl("/logoutSuccess")
-                // extra security and delete these cookies when logging out
+                // Delete cookies when logging out
                 .deleteCookies("username", "JSESSIONID"));
 
-        // only if the user goes to a page that they do not have authorization for then it goes to this page
-        // instead of showing a whitelabel error page
+
         http.exceptionHandling(exception -> exception
                 .accessDeniedPage("/404"));
 
         return http.build();
 
     }
+
     @Bean(name = "passwordEncoder")
     public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -68,5 +66,5 @@ public class SecurityConfig {
     }
 
 
-    }
+}
 

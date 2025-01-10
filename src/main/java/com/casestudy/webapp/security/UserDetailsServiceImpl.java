@@ -26,14 +26,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRoleDAO userRoleDao;
 
-    // incoming to this method is the username that the person typed into the login form
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        //first we load the user from the database
+
         User user = userDao.findByUsernameIgnoreCase(username);
 
         if (user == null) {
-            // this is not good practice to log off usernames
+
             throw new UsernameNotFoundException("Username '" + username + "' not found in database");
         }
 
@@ -43,10 +43,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
 
-        //load the user role from our database
+        //Load the user role from database
         List<UserRole> userRoles = userRoleDao.findByUserId(user.getId());
 
-        // convert our user roles into spring granted authorities
+        // Convert user roles into spring granted authorities
         List<GrantedAuthority> springRoles = buildGrantAuthorities(userRoles);
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(),
@@ -59,12 +59,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     public List<GrantedAuthority> buildGrantAuthorities(List<UserRole> userRoles) {
-        // first we create an empty list of spring granted authorities
+
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
-        // loop over our user roles from the database
+
         for (UserRole role : userRoles) {
-            // create a new simple granted authority for each user role in the database
+            
             SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getRoleName());
             authorities.add(authority);
         }

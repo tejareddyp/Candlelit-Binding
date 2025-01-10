@@ -6,13 +6,13 @@
 <head>
     <style>
         h4 {
-            font-family: Oldenburg;
+            font-family: "Oldenburg", serif;
             color: #672a3f;
             text-align: center;
         }
 
-        #order1, #order2 {
-            font-family: Oldenburg;
+        #order {
+            font-family: "Oldenburg", serif;
             color: #672a3f;
             border-style: solid;
             border-radius: 10px;
@@ -50,7 +50,7 @@
         console.log(orderDetails)
 
         document.getElementById('order-container').innerHTML = orderDetails.map(od =>
-        `<div id="order1" class="container col-sm-6 col-lg-4 mt-4">
+        `<div id="order" class="container col-sm-6 col-lg-4 mt-4">
         <div>
             <h5>Order Date: ` + od[1].slice(0,10) + `</h5>
             <h5>Amount: $` + od[3] + ` x ` + od[2] + ` = $` + (od[2] * od[3]) + `</h5>

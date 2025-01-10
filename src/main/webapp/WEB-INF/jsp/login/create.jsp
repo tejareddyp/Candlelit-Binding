@@ -20,6 +20,7 @@
 
 </head>
 <body style="background-color: #fcf4d9">
+
 <jsp:include page="../include/header.jsp"/>
 
 <section class=" pt-5 pb-2">
