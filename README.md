@@ -1,6 +1,7 @@
 Candlelit-Binding
 
 A beautifully crafted website for selling handmade books and binders.
+
 Libraries and Frameworks Used
 
     Lombok: Simplifies code with annotations to reduce boilerplate.
