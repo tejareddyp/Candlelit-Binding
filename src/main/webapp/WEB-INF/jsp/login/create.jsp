@@ -12,6 +12,7 @@
             color: #672a3f;
             font-family: "Oldenburg", serif;
         }
+
         form {
             font-family: "Oldenburg", serif;
         }
@@ -92,7 +93,6 @@
             </div>
             <c:if test="${bindingResult.hasFieldErrors('email')}">
             <div class="row justify-content-center">
-                <div class="col-sm-2"></div>
                 <div class="col-sm-6 col-lg-4">
                     <c:forEach var="error" items="${bindingResult.getFieldErrors('email')}">
                         <dd class="mb-0 form_input_error">${error.getDefaultMessage()}</dd>

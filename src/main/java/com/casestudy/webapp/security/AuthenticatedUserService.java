@@ -46,9 +46,7 @@ public class AuthenticatedUserService {
         }
     }
 
-    // This will be used by almost everyone in the project to get the user_id for the loged in user
-    // you can simplty autowire in the authenticated user service and call this function simialr to DAO call
-    // this function returns null if the user is not looged in and will return a User entity if they are
+
     public User loadCurrentUser() {
         String username = getCurrentUsername();
         if (username != null) {

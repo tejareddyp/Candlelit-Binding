@@ -4,6 +4,7 @@ import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.apache.logging.log4j.util.Cast;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -16,10 +17,10 @@ public class OrderDetailsId implements Serializable {
     private Integer orderId;
     private Integer productId;
 
-    // Default constructor
+    // No args constructor
     public OrderDetailsId() {}
 
-    // Constructor
+    // All args Constructor
     public OrderDetailsId(Integer orderId, Integer productId) {
         this.orderId = orderId;
         this.productId = productId;
@@ -30,6 +31,7 @@ public class OrderDetailsId implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        //Cast the input object (`o`) to the expected type (`OrderDetailsId`)
         OrderDetailsId that = (OrderDetailsId) o;
         return Objects.equals(orderId, that.orderId) && Objects.equals(productId, that.productId);
     }

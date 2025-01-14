@@ -1,15 +1,15 @@
 package com.casestudy.webapp.controller;
 
 import com.casestudy.webapp.database.dao.OrderDetailsDAO;
-import com.casestudy.webapp.database.dao.OrdersDAO;
-import com.casestudy.webapp.database.dao.ProductsDAO;
+
 import com.casestudy.webapp.database.dao.UserDAO;
 import com.casestudy.webapp.database.entity.OrderDetails;
-import com.casestudy.webapp.database.entity.Products;
+
 import com.casestudy.webapp.database.entity.User;
 import com.casestudy.webapp.security.AuthenticatedUserService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,17 +20,12 @@ import java.util.*;
 @Controller
 public class AccountController {
 
-    private final OrderDetailsDAO orderDetailsDAO;
-    private final UserDAO userDAO;
-    private final OrdersDAO ordersDAO;
-    private final ProductsDAO productsDAO;
+    @Autowired
+    private OrderDetailsDAO orderDetailsDAO;
 
-    public AccountController(OrderDetailsDAO orderDetailsDAO, UserDAO userDAO, OrdersDAO ordersDAO, ProductsDAO productsDAO) {
-        this.orderDetailsDAO = orderDetailsDAO;
-        this.userDAO = userDAO;
-        this.ordersDAO = ordersDAO;
-        this.productsDAO = productsDAO;
-    }
+    @Autowired
+    private UserDAO userDAO;
+
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/account")
@@ -39,6 +34,7 @@ public class AccountController {
         AuthenticatedUserService authenticatedUserService = new AuthenticatedUserService();
         String username = authenticatedUserService.getCurrentUsername();
         User user = userDAO.findByUsernameIgnoreCase(username);
+
 
         List<OrderDetails> orderDetailsList = orderDetailsDAO.findOrderDetailsByUserId(user.getId());
         System.out.println(orderDetailsList);

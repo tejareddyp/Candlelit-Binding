@@ -178,15 +178,6 @@
     };
 
 
-    let addToCart = (productId) => {
-        let currentCart = localStorage.getItem('itemsInCart');
-
-
-        if (currentCart == null) {
-            currentCart = new Map();
-        } else {
-            currentCart = new Map(JSON.parse(currentCart));
-        }
 
 
         if (currentCart.has(productId)) {

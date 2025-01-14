@@ -22,12 +22,12 @@ public class SignUpFormBean {
     private String username;
 
     @Length(max = 50, message = "Password must be less than 50 characters")
-    @NotEmpty(message = "password is required")
+    @NotEmpty(message = "Password is required")
     private String password;
 
-    @NotEmpty(message = "firstname is required")
+    @NotEmpty(message = "Firstname is required")
     private String firstname;
 
-    @NotEmpty(message = "lastname is required")
+    @NotEmpty(message = "Lastname is required")
     private String lastname;
 }
