@@ -39,8 +39,7 @@ public class AccountController {
         List<OrderDetails> orderDetailsList = orderDetailsDAO.findOrderDetailsByUserId(user.getId());
         System.out.println(orderDetailsList);
 
-//        List<Orders> ordersList = ordersDAO.findByCustomerId(user.getId());
-//        System.out.println(ordersList);
+
 
         List<List<String>> pastOrders = new ArrayList<>();
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();

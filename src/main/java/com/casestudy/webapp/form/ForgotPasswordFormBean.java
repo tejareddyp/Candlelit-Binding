@@ -14,12 +14,12 @@ public class ForgotPasswordFormBean {
     @NotEmpty(message = "Username is required")
     private String username;
 
-    @NotEmpty(message = "new password is required")
+    @NotEmpty(message = "New password is required")
     private String password;
 
-    @NotEmpty(message = "firstname is required")
+    @NotEmpty(message = "Firstname is required")
     private String firstname;
 
-    @NotEmpty(message = "lastname is required")
+    @NotEmpty(message = "Lastname is required")
     private String lastname;
 }

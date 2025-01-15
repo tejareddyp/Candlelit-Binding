@@ -68,23 +68,7 @@ public class AuthenticatedUserService {
         session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
     }
 
-    // you may not have a use for this in your project but it is nice to have in this class for feature
-    // completeness .. maybe some day
-    public boolean isUserInRole(String role) {
-        SecurityContext context = SecurityContextHolder.getContext();
-        if (context != null && context.getAuthentication() != null) {
-            Collection<? extends GrantedAuthority> authorities = context.getAuthentication().getAuthorities();
-            for (GrantedAuthority authority : authorities) {
-                if (authority.getAuthority().equals(role)) {
-                    return true;
-                }
-            }
-        }
 
-        return false;
-    }
-
-    // kinda the same function as the tag libraries .. maybe there is no use for it
     public boolean isAuthenticated() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication instanceof AnonymousAuthenticationToken) {

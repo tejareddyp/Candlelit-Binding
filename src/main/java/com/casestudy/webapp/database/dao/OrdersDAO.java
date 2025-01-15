@@ -9,5 +9,5 @@ public interface OrdersDAO extends JpaRepository<Orders, Long> {
 
     Orders findById(Integer Id);
 
-    Orders findByCustomerId(Integer CustomerId);
+
 }
