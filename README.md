@@ -60,3 +60,4 @@ Feedback
 
 Feel free to explore the website and share your feedback! Suggestions for improvement are always welcome. 
 
+![EER Diagram](src/main/webapp/pub/images/EER_Diagram.png)
