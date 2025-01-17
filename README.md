@@ -61,3 +61,10 @@ Feedback
 Feel free to explore the website and share your feedback! Suggestions for improvement are always welcome. 
 
 ![EER Diagram](src/main/webapp/pub/images/EER_Diagram.png)
+
+
+![Shop Page](src/main/webapp/pub/images/ShopPage.png)
+
+![Cart Page](src/main/webapp/pub/images/CartPage.png)
+
+![Account Page](src/main/webapp/pub/images/AccountPage.png)
