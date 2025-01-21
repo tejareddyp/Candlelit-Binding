@@ -17,9 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
-import static java.lang.Math.min;
+
+import static java.lang.Math.max;
 
 @Controller
 public class CheckoutController {
@@ -71,7 +71,7 @@ public class CheckoutController {
 
             order.getOrderDetails().add(detail);
 
-            product.setStock(min(0, product.getStock() - detail.getQuantity()));
+            product.setStock(max(0, product.getStock() - detail.getQuantity()));
             productsDAO.save(product);
         }
 

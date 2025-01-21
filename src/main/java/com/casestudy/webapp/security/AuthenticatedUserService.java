@@ -69,13 +69,5 @@ public class AuthenticatedUserService {
     }
 
 
-    public boolean isAuthenticated() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication instanceof AnonymousAuthenticationToken) {
-            return false;
-        }
-
-        return (authentication != null && authentication.isAuthenticated());
-    }
 
 }

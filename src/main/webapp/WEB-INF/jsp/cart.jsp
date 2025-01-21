@@ -5,47 +5,7 @@
 <html>
 <head>
 
-    <style>
-        #cart-header {
-            font-family: "Oldenburg", serif;
-            color: #672a3f;
-            display: flex;
-            justify-content: center;
-        }
-        .item-in-cart {
-            border-style: solid;
-            border-radius:10px;
-            border-width: 1px;
-            border-color: #672a3f;
-            margin:2rem;
-            display: flex;
-            font-family: "Oldenburg", serif;
-            font-size: large;
-            color:#672a3f;
-        }
-
-        #checkout-button {
-            display: flex;
-            justify-content: center;
-            font-family: "Oldenburg", serif;
-        }
-
-        #total-price {
-            font-family: "Oldenburg", serif;
-            display: flex;
-            justify-content: center;
-        }
-
-        img {
-            height:20%;
-            width:20%;
-        }
-
-        select {
-            width: 15%;
-        }
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="../../pub/css/cart.css">
 </head>
 <body style="background-color: #fcf4d9">
 <jsp:include page="include/header.jsp"/>

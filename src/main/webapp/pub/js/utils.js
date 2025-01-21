@@ -1,6 +1,6 @@
 
 let updateQuantity = (cartId) => {
-    cartId = "" + cartId
+
     let newQuantity = document.getElementById("select-" + cartId).value;
 
     let currentCart = localStorage.getItem('itemsInCart');

@@ -146,7 +146,7 @@
                         <h6>$<c:out value="${product.price}"/></h6>
                         <h6>Stock: <c:out value="${product.stock}"/></h6>
                     </div>
-                    <input class="addToCart" type="button" value="Add to Cart" onclick=addToCart("${product.id}")/>
+                    <input class="addToCart" type="button" onclick=addToCart("${product.id}") value="Add to Cart"/>
                 </div>
             </div>
         </c:forEach>
@@ -177,8 +177,14 @@
         document.documentElement.scrollTop = 0;
     };
 
+    let addToCart = (productId) => {
+        let currentCart = localStorage.getItem('itemsInCart');
 
-
+        if (currentCart == null) {
+            currentCart = new Map();
+        } else {
+            currentCart = new Map(JSON.parse(currentCart));
+        }
 
         if (currentCart.has(productId)) {
             let temp = currentCart.get(productId) + 1;
@@ -195,7 +201,8 @@
 
 
         localStorage.setItem('itemsInCart', JSON.stringify(Array.from(currentCart.entries())));
-    };
+    }
+
 
 </script>
 

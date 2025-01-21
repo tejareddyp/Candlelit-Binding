@@ -1,9 +1,7 @@
 package com.casestudy.webapp.database.entity;
 
 import jakarta.persistence.Embeddable;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.apache.logging.log4j.util.Cast;
 
 import java.io.Serializable;
@@ -13,18 +11,12 @@ import java.util.Objects;
 @Setter
 @Embeddable
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderDetailsId implements Serializable {
     private Integer orderId;
     private Integer productId;
 
-    // No args constructor
-    public OrderDetailsId() {}
-
-    // All args Constructor
-    public OrderDetailsId(Integer orderId, Integer productId) {
-        this.orderId = orderId;
-        this.productId = productId;
-    }
 
     // hashCode and equals
     @Override

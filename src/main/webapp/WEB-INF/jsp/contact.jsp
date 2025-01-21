@@ -7,7 +7,7 @@
 
     <style>
         form {
-            font-family: "Oldenburg";
+            font-family: "Oldenburg", serif;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -17,14 +17,6 @@
             padding: 1rem;
         }
 
-        #forgotPassword {
-            background-color: #fcf4d9;
-            color: #672a3f;
-            padding: 0rem;
-            font-size: small;
-            margin-top: .25rem;
-            border: none;
-        }
     </style>
 </head>
 <body style="background-color: #fcf4d9">

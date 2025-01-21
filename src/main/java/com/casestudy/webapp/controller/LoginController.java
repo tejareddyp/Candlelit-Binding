@@ -7,6 +7,7 @@ import com.casestudy.webapp.form.SignUpFormBean;
 import com.casestudy.webapp.security.AuthenticatedUserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+@Slf4j
 @Controller
 public class LoginController {
 
@@ -55,7 +57,7 @@ public class LoginController {
         response.setViewName("login/create");
 
         if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getAllErrors());
+            log.debug(bindingResult.getAllErrors().toString());
             response.setViewName("login/create");
             response.addObject("bindingResult", bindingResult);
             response.addObject("form", form);
@@ -80,7 +82,6 @@ public class LoginController {
             user.setUsername(form.getUsername());
 
             userDAO.save(user);
-
 
 
             authenticatedUserService.changeLoggedInUsername(session, form.getUsername(),form.getPassword());

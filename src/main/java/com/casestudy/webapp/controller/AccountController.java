@@ -9,6 +9,8 @@ import com.casestudy.webapp.database.entity.User;
 import com.casestudy.webapp.security.AuthenticatedUserService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
 
+@Slf4j
 @Controller
 public class AccountController {
 
@@ -37,14 +40,12 @@ public class AccountController {
 
 
         List<OrderDetails> orderDetailsList = orderDetailsDAO.findOrderDetailsByUserId(user.getId());
-        System.out.println(orderDetailsList);
-
 
 
         List<List<String>> pastOrders = new ArrayList<>();
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
-        orderDetailsList.forEach(orderDetail -> {
+        orderDetailsList.stream().forEach(orderDetail -> {
             List<String> pastOrder = new ArrayList<>();
             pastOrder.add(orderDetail.getProduct().getName());
             pastOrder.add(String.valueOf(orderDetail.getOrder().getOrderDate()));
@@ -54,7 +55,8 @@ public class AccountController {
         });
 
         String orderDetailsJson = gson.toJson(pastOrders);
-        System.out.println(orderDetailsJson);
+
+        log.info("Found orders for user: " + orderDetailsJson);
 
         response.setViewName("account");
         response.addObject("orderDetailsJson", orderDetailsJson);
